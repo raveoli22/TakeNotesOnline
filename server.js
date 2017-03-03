@@ -9,7 +9,7 @@ var methodOverride =   require('method-override');
 
 // configuration =================
 
-mongoose.connect('mongodb://leo:user123@ds113000.mlab.com:13000/todo');  // connect to mongoDB database
+mongoose.connect('mongodb://yuxli066:user123@ds113660.mlab.com:13660/note_test');  // connect to mongoDB database
 
 app.use(express.static(__dirname+'/public'));                   //tells express where static files will be
 app.use(morgan('dev'));                                         //log every request to console
@@ -19,62 +19,63 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(methodOverride());
 
 //define model ===================================================
-var Todo = mongoose.model('Todo', {
+var NOTE = mongoose.model('NOTE', {
     text: String
 });
 
 //Express Routes ==================================================
 //API ROUTES-------------------------------------------------------
 //API ROUTES-------------------------------------------------------
-// get all todos --------------------------------------------------
-app.get('/api/todos', function(req,res){
+
+// get all notes --------------------------------------------------
+app.get('/api/notes', function(req,res){ // <----- right here sends our notes to /api/notes 
         
-        //find to get all todos in database
-        Todo.find(function(err,todos){
+        //find to get all notes in database
+        NOTE.find(function(err,notes){
         //if there is error retrieving, send error, nothing after error will execute
         if(err){
             res.send(err);
         }
-        res.json(todos); //return all todos in JSON format
+        res.json(notes); //return all notes in JSON format
     });
 });
 
-//create a todo and send back all todos after creation
-app.post('/api/todos',function(req,res){
-    //create a todo, information comes from AJAX request from angular
-    Todo.create({
+//create a note and send back all notes after creation
+app.post('/api/notes',function(req,res){  //<--- right here creates a new note and then sends it to /api/notes                   
+    //create a note, information comes from AJAX request from angular
+    NOTE.create({
         text: req.body.text,
         done: false
-    }, function(err,todo){
+    }, function(err,note){
         if(err){
             res.send(err);
         }
         
-        //get and return all the todos after you create another
-        Todo.find(function(err,todos){
+        //get and return all the notes after you create another
+        NOTE.find(function(err,notes){
             if(err){
                 res.send(err);
             }
-            res.json(todos);
+            res.json(notes);
         });
     });
 });
 
-//delete a todo
-app.delete('/api/todos/:todo_id', function(req,res){
-    Todo.remove({
-        _id: req.params.todo_id
-    }, function(err,todo){
+//delete a note
+app.delete('/api/notes/:note_id', function(req,res){ //<--- finds the id given by mongo and delete it
+    NOTE.remove({
+        _id: req.params.note_id
+    }, function(err,note){
         if(err){
             res.send(err);
         }
         
-        //get and return all todos after you delete one
-        Todo.find(function(err,todos){
+        //get and return all notes after you delete one
+        NOTE.find(function(err,notes){
             if(err){
                 res.send(err);
             }
-            res.json(todos);
+            res.json(notes);
         });
     });
 });

@@ -4,9 +4,9 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
     $scope.formData = {};
     
     //when landing on the page, get all todos and show
-    $http.get('/api/todos')
+    $http.get('/api/notes')
         .success(function(data){
-            $scope.todos = data;
+            $scope.allNotes = data;
             console.log(data);
         })
         .error(function(data){
@@ -14,11 +14,11 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
         });
     
     //when submitting the add form, send the text to node API
-    $scope.createTodo = function(){
-        $http.post('/api/todos',$scope.formData)
+    $scope.createNote = function(){
+        $http.post('/api/notes',$scope.formData)
             .success(function(data){
             $scope.formData = {};
-            $scope.todos = data;
+            $scope.allNotes = data;
             console.log(data);
             })
             .error(function(data){
@@ -27,10 +27,10 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
     };
 
     //deleting a todo after checking it
-    $scope.deleteTodo = function(id){
-        $http.delete('/api/todos/'+id)
+    $scope.deleteNote = function(id){
+        $http.delete('/api/notes/'+id)
             .success(function(data){
-                $scope.todos = data;
+                $scope.allNotes = data;
                 console.log(data);
             })
             .error(function(data){
@@ -39,6 +39,7 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
     };
 }]);
 
+/*
 app.directive('notepad',function(notesFactory) {
     return {
         restrict: 'AE',
@@ -74,3 +75,4 @@ app.directive('notepad',function(notesFactory) {
         templateUrl: "./templates/notepad.html";
     };
 });
+*/
