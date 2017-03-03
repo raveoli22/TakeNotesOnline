@@ -10,7 +10,8 @@
     <title>ONLINE NOTE TAKER</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"> <!-- load bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
 
     <!-- JS -->
@@ -24,7 +25,9 @@
 <body ng-controller="mainController">
     
     <div class="container">
-        <h1 class="title">Take Notes Online</h1>
+        <div class="title text-center">
+            <h1>Take Notes Online</h1>
+        </div>
         <div ng-repeat="note in allNotes">
             <ul>
                 <li>{{note.text}} <button ng-click="deleteNote(note._id)">Delete</button></li>

@@ -1,0 +1,13 @@
+*{
+    //border: 1px black solid;
+}
+
+textarea{
+    width: 99%;
+    height: 300px;
+    resize: none;
+}
+
+.title {
+    margin: 5px auto;
+}
