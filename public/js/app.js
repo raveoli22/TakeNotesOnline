@@ -1,6 +1,8 @@
 var app = angular.module('noteTake',[]);
 
 app.controller('mainController',['$scope','$http',function($scope,$http){
+    $scope.btnShow = false; 
+    
     $scope.formData = {};
     
     //when landing on the page, get all todos and show
@@ -32,6 +34,7 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
             .success(function(data){
                 $scope.allNotes = data;
                 console.log(data);
+                $scope.hovering = false; 
             })
             .error(function(data){
                 console.log("Error" + data);
@@ -39,40 +42,28 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
     };
 }]);
 
-/*
-app.directive('notepad',function(notesFactory) {
-    return {
-        restrict: 'AE',
-        scope: {},
-        link: function(scope,elem,attrs) {
-            scope.restore = function(){
-                scope.editMode = false; //if editMode is false, we are in display mode
-                scope.index = -1;       //track which note is being edited, new note is -1 index
-                scope.noteText = '';    //string containing is in the Note
-            };
-            
-            scope.openEditor = function(index) {
-                scope.editMode = true;
-                if (index !== undefined){
-                    scope.noteText = notesFactory.get(index).content;
-                    scope.index = index;
-                } else {
-                    scope.noteText = undefined; 
-                }
-            };
-            
-            scope.save = function() {
-                if (scope.noteText !== ''){
-                    var note = {};
-                    note.title = scope.noteText.length > 10 ? scope.noteText.substring(0,10) + '...' : scope.noteText;
-                    note.content = scope.noteText;
-                    note.id = scope.index != -1 ? scope.index : localStorage.length;
-                    scope.ntes = notesFactory.put(note);
-                }
-                scope.restore();
-            };
-        },
-        templateUrl: "./templates/notepad.html";
-    };
+app.directive('deleteArea',function(){
+  return{
+    scope:{
+      btnShow:'@buttonShow',
+        color: '=color2'
+    },
+    restrict: 'AE',
+    replace: true,
+    template: '<div  ng-hide="btnShow" style="border: 1px solid black; display: inline-block;"><button>{{btnShow}}</button></div>',
+    link: function(scope,elem,attrs){
+      elem.bind('mouseover',function(){
+        elem.css('cursor','pointer');
+        scope.$apply(function(){
+            scope.btnShow = "true"; 
+        });
+      });
+      elem.bind('mouseleave',function(){
+          scope.$apply(function(){
+              scope.btnShow = "false";
+          });
+      });
+      
+    }
+  }
 });
-*/

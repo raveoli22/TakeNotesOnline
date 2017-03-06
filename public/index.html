@@ -1,5 +1,3 @@
-<!-- index.html -->
-<!doctype html>
 
 <html ng-app="noteTake">
 <head>
@@ -26,17 +24,55 @@
     
     <div class="container">
         <div class="title text-center">
-            <h1>Take Notes Online</h1>
+            <h1 id="Header">Take Notes Online</h1>
         </div>
-        <div ng-repeat="note in allNotes">
+        <div ng-repeat="note in allNotes" class="allNotes">
             <ul>
-                <li>{{note.text}} <button ng-click="deleteNote(note._id)">Delete</button></li>
-                
+                <li ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true">{{note.text}}<button ng-show="btnShow" ng-click="deleteNote(note._id)">DELETE</button></li>
             </ul>
         </div>
-        <textarea ng-model="formData.text" placeholder="type your notes"></textarea>
-        <button ng-click="createNote()">Create</button>
+        <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="textfont">
+                <button type="button" class="btn btn-default" >H1</button>
+                <button type="button" class="btn btn-default" >H2</button>
+                <button type="button" class="btn btn-default" >H3</button>
+                <button type="button" class="btn btn-default" >H4</button>
+                <button type="button" class="btn btn-default" >H5</button>
+                <button type="button" class="btn btn-default" >H6</button>
+                <select type="button" class="btn btn-default" name="FontSize"></select>
+                <select type="button" class="btn btn-default" name="FontType"></select>
+            </div>
+            <div class="btn-group" role="paragraph">
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-align-left"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-align-center"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-align-right"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-list"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-indent-left"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-indent-right"></span>
+                </button>
+                <button type="button" class="btn btn-default" >
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+            </div>
+        </div>
+        <textarea ng-model="formData.text" placeholder="type your notes">
+
         
+        </textarea>
+        <div class="createBtn"> 
+            <button ng-click="createNote()">Create</button>
+        </div>
     </div>
 
 </body>

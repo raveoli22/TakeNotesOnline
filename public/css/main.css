@@ -2,12 +2,57 @@
     //border: 1px black solid;
 }
 
+#Header {
+    padding-bottom: 50px;
+}
+
 textarea{
     width: 99%;
     height: 300px;
     resize: none;
+    border: none !important;
+    overflow: auto;
+    
+}
+textarea:focus {
+    outline:none;
 }
 
+.allNotes li {
+    border: 1px black solid; 
+    list-style: none;
+    padding-left: 100px;
+}
+
+.createBtn button {
+    margin-left: 800px;
+    width: auto;
+}
+
+.allNotes button {
+    margin-left: 800px;
+    width: auto;
+}
+
+.btn-toolbar button {
+    width: 60px;
+    height: 40px;
+}
+
+.btn-toolbar select {
+    width: 100px;
+    height: 40px;
+}
 .title {
     margin: 5px auto;
+}
+
+.createBtn button {
+    float: right;
+    clear: both;
+}
+
+deleteArea {
+    border: 1px black solid; 
+    display: inline-block;
 }
