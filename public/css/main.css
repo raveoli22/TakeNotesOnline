@@ -10,7 +10,7 @@ textarea{
     width: 99%;
     height: 300px;
     resize: none;
-    border: none !important;
+    border: 1px solid lightgrey !important;
     overflow: auto;
     
 }
@@ -26,6 +26,7 @@ textarea:focus {
 
 .createBtn button {
     margin-left: 800px;
+    margin-top: 30px;
     width: auto;
 }
 
@@ -37,11 +38,13 @@ textarea:focus {
 .btn-toolbar button {
     width: 60px;
     height: 40px;
+    margin-bottom: 15px;
 }
 
 .btn-toolbar select {
     width: 100px;
     height: 40px;
+    margin-bottom: 15px;
 }
 .title {
     margin: 5px auto;
