@@ -23,7 +23,7 @@
 <body ng-controller="mainController">
     
     <div class="container">
-        <div class="title text-center">
+        <div class="title text-left">
             <h1 id="Header">Take Notes Online</h1>
         </div>
         <div ng-repeat="note in allNotes" class="allNotes">
@@ -33,7 +33,7 @@
         </div>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="textfont">
-                <button type="button" class="btn btn-default" >H1</button>
+                <button type="button" class="btn btn-default" ng-click="makeBold()" unselectable="on" ng-mousedown="$event.stopPropagation()">H1</button>
                 <button type="button" class="btn btn-default" >H2</button>
                 <button type="button" class="btn btn-default" >H3</button>
                 <button type="button" class="btn btn-default" >H4</button>
@@ -93,12 +93,19 @@
 
             </div>
         </div>
-        <textarea ng-model="formData.text" placeholder="type your notes">
-
         
-        </textarea>
+        <div id="noteEditor">
+            <!-- transfer innerhtml to textarea when user is done -->
+            <textarea id="theTextArea" name="theTextArea" style="display:none;"></textarea>   
+            <!-- iframe replacement of textarea-->
+            <div class="editor-container">
+                <editor>hello</editor>
+            </div>
+            <!-- iframe replacement of textarea-->
+        </div>
+        
         <div class="createBtn"> 
-            <button ng-click="createNote()">Create</button>
+            <button ng-click="createNote();">Create</button>
         </div>
     </div>
 

@@ -6,22 +6,21 @@
     padding-bottom: 50px;
 }
 
+/*
 textarea{
     width: 99%;
     height: 300px;
     resize: none;
     border: 1px solid lightgrey !important;
     overflow: auto;
-    
 }
-textarea:focus {
-    outline:none;
-}
+*/
 
 .allNotes li {
     border: 1px black solid; 
     list-style: none;
     padding-left: 100px;
+    height: 4%;
 }
 
 .createBtn button {
@@ -31,8 +30,9 @@ textarea:focus {
 }
 
 .allNotes button {
-    margin-left: 800px;
-    width: auto;
+    position: relative; 
+    float: right;
+    margin-right: 30px;
 }
 
 .btn-toolbar button {
@@ -55,7 +55,18 @@ textarea:focus {
     clear: both;
 }
 
-deleteArea {
-    border: 1px black solid; 
-    display: inline-block;
+.editor-container {
+  width: 100%;
+  height: 400px;
+  padding: 4px;
+  margin-top: 5px;
+  background: #555;
+  box-sizing: border-box;
+}
+
+#richTextField {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
 }

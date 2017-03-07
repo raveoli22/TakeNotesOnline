@@ -1,6 +1,6 @@
 var app = angular.module('noteTake',[]);
 
-app.controller('mainController',['$scope','$http',function($scope,$http){
+app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false; 
     
     $scope.formData = {};
@@ -17,6 +17,14 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
     
     //when submitting the add form, send the text to node API
     $scope.createNote = function(){
+        var theNote = document.getElementById("noteEditor");
+       
+        var text = document.getElementById("theTextArea");
+        
+        text.value = window.frames['richTextField'].document.body.innerHTML;
+        console.log(text.value);
+        $scope.formData.text = text.value;
+        
         $http.post('/api/notes',$scope.formData)
             .success(function(data){
             $scope.formData = {};
@@ -40,30 +48,26 @@ app.controller('mainController',['$scope','$http',function($scope,$http){
                 console.log("Error" + data);
             });
     };
+    
+    
+    
+    $scope.sendToText = function(){
+
+    };
+    
 }]);
 
-app.directive('deleteArea',function(){
-  return{
-    scope:{
-      btnShow:'@buttonShow',
-        color: '=color2'
-    },
-    restrict: 'AE',
-    replace: true,
-    template: '<div  ng-hide="btnShow" style="border: 1px solid black; display: inline-block;"><button>{{btnShow}}</button></div>',
-    link: function(scope,elem,attrs){
-      elem.bind('mouseover',function(){
-        elem.css('cursor','pointer');
-        scope.$apply(function(){
-            scope.btnShow = "true"; 
-        });
-      });
-      elem.bind('mouseleave',function(){
-          scope.$apply(function(){
-              scope.btnShow = "false";
-          });
-      });
-      
-    }
-  }
+//scope is inherited from parent scope 
+app.directive('editor',function(){
+   return{
+       restrict: 'E',
+       templateUrl:"/js/templates/editor.html",
+       replace: true,
+       link: function(scope,elem,attrs){
+            richTextField.document.designMode = 'on';
+            scope.doFormat = function(cmd,val) {
+                richTextField.document.execCommand(cmd,null,val);
+            };
+       }
+   }; 
 });
