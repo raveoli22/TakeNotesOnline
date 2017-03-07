@@ -49,12 +49,6 @@ app.controller('mainController',['$scope','$http','$document','$window',function
             });
     };
     
-    
-    
-    $scope.sendToText = function(){
-
-    };
-    
 }]);
 
 //scope is inherited from parent scope 
@@ -70,4 +64,11 @@ app.directive('editor',function(){
             };
        }
    }; 
+});
+
+//directive to remove HTML 
+app.filter('removeHTML', function(){
+    return function(text){
+        return text ? String(text).replace(/<[^>]+>/gm, '') : '';
+    }
 });

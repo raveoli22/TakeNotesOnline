@@ -28,12 +28,12 @@
         </div>
         <div ng-repeat="note in allNotes" class="allNotes">
             <ul>
-                <li ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true">{{note.text}}<button ng-show="btnShow" ng-click="deleteNote(note._id)">DELETE</button></li>
+                <li ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true">{{note.text|removeHTML}}<button ng-show="btnShow" ng-click="deleteNote(note._id)">DELETE</button></li>
             </ul>
         </div>
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="textfont">
-                <button type="button" class="btn btn-default" ng-click="makeBold()" unselectable="on" ng-mousedown="$event.stopPropagation()">H1</button>
+                <button type="button" class="btn btn-default" ng-click="doFormat('Bold',null)" unselectable="on">H1</button>
                 <button type="button" class="btn btn-default" >H2</button>
                 <button type="button" class="btn btn-default" >H3</button>
                 <button type="button" class="btn btn-default" >H4</button>

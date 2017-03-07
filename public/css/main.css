@@ -6,16 +6,6 @@
     padding-bottom: 50px;
 }
 
-/*
-textarea{
-    width: 99%;
-    height: 300px;
-    resize: none;
-    border: 1px solid lightgrey !important;
-    overflow: auto;
-}
-*/
-
 .allNotes li {
     border: 1px black solid; 
     list-style: none;
