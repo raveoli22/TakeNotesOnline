@@ -3,6 +3,8 @@ var app = angular.module('noteTake',[]);
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false; 
     
+    $scope.selected = 'normal';
+    
     $scope.formData = {};
     
     //when landing on the page, get all todos and show
@@ -70,6 +72,35 @@ app.controller('mainController',['$scope','$http','$document','$window',function
           alert("Link Error");
       }
     };
+    
+    
+    $scope.changeFontSize = function (){
+        switch($scope.selected){
+            case 'xlarge':
+                $scope.doFormat('fontSize',6);
+                break;
+            case 'xxlarge':
+                $scope.doFormat('fontSize',7);
+                break;
+            case 'large':
+                $scope.doFormat('fontSize',5);
+                break;
+            case 'small':
+                $scope.doFormat('fontSize',3);
+                break;
+            case 'xsmall':
+                $scope.doFormat('fontSize',2);
+                break;
+            case 'xxsmall':
+                $scope.doFormat('fontSize',1);
+                break;
+            default: 
+                $scope.doFormat('fontSize',4);
+                break;
+        };
+    };
+    
+    
     
 }]);
 

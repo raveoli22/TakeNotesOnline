@@ -37,15 +37,17 @@
                 <li ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true">{{note.text|removeHTML}}<button ng-show="btnShow" ng-click="deleteNote(note._id)">DELETE</button></li>
             </ul>
         </div>
+        <div class="editor-wrap">
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="textfont">
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',7)" unselectable="on">H1</button>
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',6)">H2</button>
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',5)">H3</button>
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',4)">H4</button>
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',3)">H5</button>
-                <button type="button" class="btn btn-default" ng-click="doFormat('fontSize',2)">H6</button>
-                <select type="button" class="btn btn-default" name="FontSize"></select>
+                <select name="FontSize" class="btn btn-default" ng-model="selected" ng-mouseleave="changeFontSize()">
+                    <option  value="xxlarge"><h1>extra extra large</h1></option>
+                    <option  value="xlarge"><h2>extra large</h2></option>
+                    <option  value="large"><h3>large</h3></option>
+                    <option  value="normal" selected><h4>normal</h4></option>
+                    <option  value="small"><h5>small</h5></option>
+                    <option  value="xsmall"><h6>extra small</h6></option>
+                </select>
                 <select type="button" class="btn btn-default" name="FontType"></select>
             </div>
            <div class="btn-group" role="textmanipulation">
@@ -109,12 +111,14 @@
             </div>
             <!-- iframe replacement of textarea-->
         </div>
-        
-        <div class="createBtn"> 
-            <button ng-click="createNote();">SAVE</button>
         </div>
         
-        <div id="dialog" title="Save">
+        <div class="createBtn"> 
+            <button class="btn btn-primary" ng-click="createNote();">SAVE</button>
+        </div>
+        
+        
+        <div id="dialog" title="Save" style="display:none;" >
             <p>Please enter a subject to save your work: </p>
             <input type = "text" >
         </div>
