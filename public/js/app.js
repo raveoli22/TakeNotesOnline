@@ -17,6 +17,8 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     
     //when submitting the add form, send the text to node API
     $scope.createNote = function(){
+        
+        $( "#dialog" ).dialog();
         var theNote = document.getElementById("noteEditor");
        
         var text = document.getElementById("theTextArea");
@@ -49,6 +51,26 @@ app.controller('mainController',['$scope','$http','$document','$window',function
             });
     };
     
+    $scope.insertImage = function(){
+        var imageURL = prompt("Enter the image URL");
+        if (imageURL != ""){
+            $scope.doFormat('insertImage',imageURL);
+        }
+        else {
+            alert("Image Error");
+        }
+    };
+    
+    $scope.insertLink = function(){
+      var linkURL = prompt("Enter the Link URL");
+      if (linkURL != ""){
+          $scope.doFormat('createLink',linkURL);
+      }
+      else {
+          alert("Link Error");
+      }
+    };
+    
 }]);
 
 //scope is inherited from parent scope 
@@ -60,7 +82,7 @@ app.directive('editor',function(){
        link: function(scope,elem,attrs){
             richTextField.document.designMode = 'on';
             scope.doFormat = function(cmd,val) {
-                richTextField.document.execCommand(cmd,null,val);
+                richTextField.document.execCommand(cmd,false,val);
             };
        }
    }; 
