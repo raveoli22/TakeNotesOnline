@@ -3,10 +3,13 @@ var app = angular.module('noteTake',[]);
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false; 
     
+    $scope.noteSubject = "";
+    
     $scope.selected = 'normal';
     $scope.selectedFont = 'Times New Roman';
     $scope.formData = {};
     
+    $scope.editMode = false; 
     //when landing on the page, get all todos and show
     $http.get('/api/notes')
         .success(function(data){
@@ -19,10 +22,8 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     
     //when submitting the add form, send the text to node API
     $scope.createNote = function(){
-        
-        $( "#dialog" ).dialog();
-        var theNote = document.getElementById("noteEditor");
-       
+        $( "#dialog" ).dialog('close');
+        $scope.editMode = false;
         var text = document.getElementById("theTextArea");
         
         text.value = window.frames['richTextField'].document.body.innerHTML;
@@ -53,7 +54,13 @@ app.controller('mainController',['$scope','$http','$document','$window',function
             });
     };
     
-    $scope.insertImage = function(){
+    $scope.popUp = function() {          //popup function
+        $( "#dialog" ).dialog();
+        var theNote = document.getElementById("noteEditor");
+    };
+    
+    
+    $scope.insertImage = function(){     //insert image function
         var imageURL = prompt("Enter the image URL");
         if (imageURL != ""){
             $scope.doFormat('insertImage',imageURL);
@@ -63,7 +70,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         }
     };
     
-    $scope.insertLink = function(){
+    $scope.insertLink = function(){        //insert link function
       var linkURL = prompt("Enter the Link URL");
       if (linkURL != ""){
           $scope.doFormat('createLink',linkURL);
@@ -74,7 +81,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     };
     
     
-    $scope.changeFontSize = function (){
+    $scope.changeFontSize = function (){      //font sizes
         switch($scope.selected){
             case 'xlarge':
                 $scope.doFormat('fontSize',6);
@@ -100,7 +107,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         };
     };
     
-    $scope.changeFontType = function(){
+    $scope.changeFontType = function(){           //font types
         switch($scope.selectedFont){
             case 'Times New Roman': 
                 $scope.doFormat('fontName',$scope.selectedFont);

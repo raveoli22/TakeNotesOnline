@@ -20,6 +20,7 @@ app.use(methodOverride());
 
 //define model ===================================================
 var NOTE = mongoose.model('NOTE', {
+    subject: String,
     text: String
 });
 
@@ -44,6 +45,7 @@ app.get('/api/notes', function(req,res){ // <----- right here sends our notes to
 app.post('/api/notes',function(req,res){  //<--- right here creates a new note and then sends it to /api/notes                   
     //create a note, information comes from AJAX request from angular
     NOTE.create({
+        subject: req.body.noteSubject,
         text: req.body.text,
         done: false
     }, function(err,note){

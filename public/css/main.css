@@ -8,9 +8,8 @@ body {
 }
 
 .jumbotron {
-    background-color: aliceblue;
+    background-color: rgba(255, 0, 0, 0);; !important;
     border-radius: 50px !important;
-    height: 25%;
 }
 
 .editor-wrap {
@@ -22,6 +21,19 @@ body {
 
 #Header {
     padding-bottom: 50px;
+}
+
+.savedNotes {
+    padding: 20px;
+    display: inline-block;
+    height: 500px;
+    width: 100%;
+    border-radius: 40px;
+}
+
+hr {
+    background-color: black !important;
+    height: 1px;
 }
 
 .allNotes li {
