@@ -39,16 +39,20 @@
         </div>
         
         <div class="savedNotes" ng-show="!editMode">
-            <div class="page-header text-center">
+            <div class="page-header text-center"  >
                 <h1>YOUR NOTES</h1>
                 <hr>
             </div>
             <div ng-repeat="note in allNotes" class="allNotes">
                 <br>
                 <ul>
-                    <li ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true">
-                        {{note.text|removeHTML}}<button ng-show="btnShow" ng-click="deleteNote(note._id)">DELETE</button>
-                    </li>
+                    <div> 
+                        <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" >
+                            <li>
+                                {{note.subject|removeHTML}}<a ng-show="btnShow" ng-click="deleteNote(note._id)"><i>DELETE</i></a>
+                            </li>
+                        </div>
+                    </div>
                 </ul>
             </div>
             <div class="create text-center"> 

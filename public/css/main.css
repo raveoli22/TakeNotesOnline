@@ -37,22 +37,31 @@ hr {
 }
 
 .allNotes li {
-    border: 1px black solid; 
     list-style: none;
     padding-left: 100px;
     height: 4%;
 }
 
+.noteItem {
+    border: 1px black solid; 
+    padding: 20px;
+}
+
+.noteItem:hover{
+    background-color: lightcyan;
+    cursor: pointer;
+}
 .createBtn button {
     margin-left: 800px;
     margin-top: 30px;
     width: auto;
 }
 
-.allNotes button {
+.allNotes a {
+    border: 1px solid black;
     position: relative; 
     float: right;
-    margin-right: 30px;
+    padding-right: 50px;
 }
 
 .btn-toolbar button {

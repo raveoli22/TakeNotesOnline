@@ -45,7 +45,7 @@ app.get('/api/notes', function(req,res){ // <----- right here sends our notes to
 app.post('/api/notes',function(req,res){  //<--- right here creates a new note and then sends it to /api/notes                   
     //create a note, information comes from AJAX request from angular
     NOTE.create({
-        subject: req.body.noteSubject,
+        subject: req.body.subject,
         text: req.body.text,
         done: false
     }, function(err,note){
@@ -61,6 +61,8 @@ app.post('/api/notes',function(req,res){  //<--- right here creates a new note a
             res.json(notes);
         });
     });
+    console.log('hello');
+    console.log(req.body);
 });
 
 //delete a note

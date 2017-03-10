@@ -1,13 +1,17 @@
 var app = angular.module('noteTake',[]);
 
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
-    $scope.btnShow = false; 
+    $scope.btnShow = false;  //default delete button not showing
     
-    $scope.noteSubject = "";
+    $scope.noteSubject = ""; //default subject 
     
-    $scope.selected = 'normal';
-    $scope.selectedFont = 'Times New Roman';
-    $scope.formData = {};
+    $scope.selected = 'normal'; //default font size
+    $scope.selectedFont = 'Times New Roman'; //default font text
+    
+    $scope.formData = { //notes model we are passing in
+        subject: "",
+        text: ""
+    };
     
     $scope.editMode = false; 
     //when landing on the page, get all todos and show
@@ -26,10 +30,12 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         $scope.editMode = false;
         var text = document.getElementById("theTextArea");
         
-        text.value = window.frames['richTextField'].document.body.innerHTML;
-        console.log(text.value);
+        text.value = window.frames['richTextField'].document.body.innerHTML; //transfers rich text field to text area
+        window.frames['richTextField'].document.body.innerHTML = ""; //clears field after it is saved
+        //console.log(text.value);
         $scope.formData.text = text.value;
-        
+        $scope.formData.subject = $scope.noteSubject;
+        console.log($scope.noteSubject);
         $http.post('/api/notes',$scope.formData)
             .success(function(data){
             $scope.formData = {};
