@@ -4,7 +4,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     $scope.btnShow = false; 
     
     $scope.selected = 'normal';
-    
+    $scope.selectedFont = 'Times New Roman';
     $scope.formData = {};
     
     //when landing on the page, get all todos and show
@@ -100,7 +100,52 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         };
     };
     
-    
+    $scope.changeFontType = function(){
+        switch($scope.selectedFont){
+            case 'Times New Roman': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Palatino Linotype': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Georgia': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Arial': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Arial Black': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Comic Sans MS': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Impact': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Lucida Sans Unicode': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Tahoma': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Verdana': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Helvetica': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Lucida Console': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            case 'Courier New': 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+            default: 
+                $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+        };
+    };
     
 }]);
 

@@ -7,9 +7,17 @@ body {
     background-repeat: repeat;
 }
 
+.jumbotron {
+    background-color: aliceblue;
+    border-radius: 50px !important;
+    height: 25%;
+}
+
 .editor-wrap {
-    background-color: beige;
-    padding: 10px;
+    margin-top: 30px;
+    background-color: aliceblue;
+    padding: 15px;
+    border-radius: 30px;
 }
 
 #Header {
@@ -45,8 +53,20 @@ body {
     height: 40px;
 }
 
+#embed {
+    margin-top: 5px;
+}
+
+#FontSize {
+    float: left;
+}
+
+#FontType {
+    float: left;
+}
+
 .btn-toolbar {
-    background-color: beige;
+    background-color: clear;
     padding: 8px;
 }
 
@@ -62,7 +82,7 @@ body {
 .editor-container {
   width: 100%;
   height: 400px;
-  background-color: beige;
+  background-color: clear;
   padding: 15px;
   box-sizing: border-box;
 }
@@ -74,5 +94,8 @@ body {
   background: #ffffff;
   border: 1px solid; 
   border-color: dimgrey; 
+  //border-radius: 40px;
 }
+
+
 

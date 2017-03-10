@@ -11,6 +11,11 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/main.css">
+    
+    <!-- Font Awesome -->
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/3ae3022b98.js"></script>
 
     <!-- JS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
@@ -29,7 +34,7 @@
 <body ng-controller="mainController">
     
     <div class="container">
-        <div class="title text-left">
+        <div class="title text-center jumbotron">
             <h1 id="Header">Take Notes Online</h1>
         </div>
         <div ng-repeat="note in allNotes" class="allNotes">
@@ -40,7 +45,7 @@
         <div class="editor-wrap">
         <div class="btn-toolbar" role="toolbar">
             <div class="btn-group" role="textfont">
-                <select name="FontSize" class="btn btn-default" ng-model="selected" ng-mouseleave="changeFontSize()">
+                <select id="FontSize" name="FontSize" ng-model="selected" ng-mouseleave="changeFontSize()" unselectable="on">
                     <option  value="xxlarge"><h1>extra extra large</h1></option>
                     <option  value="xlarge"><h2>extra large</h2></option>
                     <option  value="large"><h3>large</h3></option>
@@ -48,58 +53,74 @@
                     <option  value="small"><h5>small</h5></option>
                     <option  value="xsmall"><h6>extra small</h6></option>
                 </select>
-                <select type="button" class="btn btn-default" name="FontType"></select>
-            </div>
-           <div class="btn-group" role="textmanipulation">
+                <select name="FontType" id="FontType" ng-model="selectedFont" ng-mouseleave="changeFontType()" unselectable="on">
+                    <option  value="Times New Roman">Times New Roman</option>
+                    <option  value="Palatino Linotype">Palatino Linotype</option>
+                    <option  value="Georgia">Georgia</option>
+                    <option  value="Arial">Arial</option>
+                    <option  value="Arial Black">Arial Black</option>
+                    <option  value="Comic Sans MS">Comic Sans MS</option>
+                    <option  value="Impact">Impact</option>
+                    <option  value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                    <option  value="Tahoma">Tahoma</option>
+                    <option  value="Verdana">Verdana</option>
+                    <option  value="Helvetica">Helvetica</option>
+                    <option  value="Lucida Console">Lucida Console</option>
+                    <option  value="Courier New">Courier New</option>
+                </select>
+                
                 <button type="button" class="btn btn-default" ng-click="doFormat('bold',null)">
-                    <span class="glyphicon glyphicon-bold"></span>
+                     <i class="fa fa-bold" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('italic',null)">
-                    <span class="glyphicon glyphicon-italic"></span>
+                    <i class="fa fa-italic" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('underline',null)">
-                    U_
+                    <i class="fa fa-underline" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('insertUnorderedList',null)">
-                    <span class="glyphicon glyphicon-list"></span>
+                    <i class="fa fa-list-ul" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('insertOrderedList',null)">
-                    123
+                    <i class="fa fa-list-ol" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('redo',null)">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <i class="fa fa-repeat" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('undo',null)">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <i class="fa fa-undo" aria-hidden="true"></i>
                 </button>
-            </div>
-            <div class="btn-group" role="paragraph">
+
                 <button type="button" class="btn btn-default" ng-click="doFormat('justifyLeft',null)">
-                    <span class="glyphicon glyphicon-align-left"></span>
+                    <i class="fa fa-align-left" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('justifyCenter',null)">
-                    <span class="glyphicon glyphicon-align-center"></span>
+                    <i class="fa fa-align-center" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('justifyRight',null)">
-                    <span class="glyphicon glyphicon-align-right"></span>
+                    <i class="fa fa-align-right" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('justifyFull',null)">
-                    <span class="glyphicon glyphicon-align-justify"></span>
+                    <i class="fa fa-align-justify" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('indent',null)">
-                    <span class="glyphicon glyphicon-indent-left"></span>
+                    <i class="fa fa-underline" aria-hidden="true"></i>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="doFormat('outdent',null)">
-                    <span class="glyphicon glyphicon-indent-right"></span>
+                    <i class="fa fa-underline" aria-hidden="true"></i>
                 </button>
+            </div>
+            
+            <div class="btn-group" role="embed" id="embed">
                 <button type="button" class="btn btn-default" ng-click="insertImage()">
                     <span class="glyphicon glyphicon-picture"></span>
                 </button>
                 <button type="button" class="btn btn-default" ng-click="insertLink()">
                     <span class="glyphicon glyphicon-link"></span>
                 </button>
+            </div>    
 
-            </div>
+            
         </div>
         
         <div id="noteEditor">
@@ -123,6 +144,7 @@
             <input type = "text" >
         </div>
     </div>
+   
 
 </body>
 </html>
