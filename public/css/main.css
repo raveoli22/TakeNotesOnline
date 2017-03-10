@@ -53,12 +53,9 @@ hr {
 }
 .createBtn button {
     margin-left: 800px;
-    margin-top: 30px;
-    width: auto;
 }
 
 .allNotes a {
-    border: 1px solid black;
     position: relative; 
     float: right;
     padding-right: 50px;

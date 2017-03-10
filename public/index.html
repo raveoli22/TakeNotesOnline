@@ -46,12 +46,10 @@
             <div ng-repeat="note in allNotes" class="allNotes">
                 <br>
                 <ul>
-                    <div> 
-                        <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" >
-                            <li>
-                                {{note.subject|removeHTML}}<a ng-show="btnShow" ng-click="deleteNote(note._id)"><i>DELETE</i></a>
-                            </li>
-                        </div>
+                    <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" ng-click="open(note)">
+                        <li>
+                            {{note.subject|removeHTML}}<a href="#" ng-show="btnShow" ng-click="deleteNote(note._id); $event.stopPropagation();" ><i>DELETE</i></a>
+                        </li>
                     </div>
                 </ul>
             </div>
@@ -154,7 +152,9 @@
             <div class="createBtn"> 
                 <button class="btn btn-primary" ng-click="popUp()">SAVE</button>
             </div>
-            
+            <div class="backBtn"> 
+                <button class="btn btn-primary" ng-click="backToMenu()">BACK</button>
+            </div>
         </div>
         
 

@@ -3,7 +3,14 @@ var app = angular.module('noteTake',[]);
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false;  //default delete button not showing
     
-    $scope.noteSubject = ""; //default subject 
+    $scope.open = function(i){
+        $scope.editMode = true; 
+        window.frames['richTextField'].document.body.innerHTML = i.text;
+    };
+    
+    $scope.backToMenu = function(){
+        $scope.editMode = false; 
+    }
     
     $scope.selected = 'normal'; //default font size
     $scope.selectedFont = 'Times New Roman'; //default font text
