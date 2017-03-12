@@ -19,7 +19,7 @@
 
     <!-- JS -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script><!-- load angular -->
     <script src="./js/app.js"></script>
     
     <!-- Modal -->
@@ -43,10 +43,10 @@
                 <h1>YOUR NOTES</h1>
                 <hr>
             </div>
-            <div ng-repeat="note in allNotes" class="allNotes">
+            <div ng-repeat="note in allNotes track by $index" class="allNotes">
                 <br>
                 <ul>
-                    <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" ng-click="open(note)">
+                    <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" ng-click="open(note,$index)">
                         <li>
                             {{note.subject|removeHTML}}<a href="#" ng-show="btnShow" ng-click="deleteNote(note._id); $event.stopPropagation();" ><i>DELETE</i></a>
                         </li>
