@@ -32,6 +32,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         });
     
     //when submitting the add form, send the text to node API
+    //use http put or patch
     $scope.createNote = function(){
         $( "#dialog" ).dialog('close');
         $scope.editMode = false;
