@@ -83,6 +83,31 @@ app.delete('/api/notes/:note_id', function(req,res){ //<--- finds the id given b
         });
     });
 });
+
+app.put('/api/notes/:note_id', function(req,res){ //find user and update 
+    NOTE.findById(req.params.note_id, function(err,notes){
+        if (err){
+            res.send(err);
+        }
+        else {
+            notes.subject = req.body.subject;
+            notes.text    = req.body.text;
+        }
+        
+        notes.save(function(err,notes){
+            if(err){
+                res.send(err);
+            }
+        });
+        
+        NOTE.find(function(err,notes){
+            if(err){
+                res.send(err);
+            }
+            res.json(notes);
+        });
+    });
+});
 //API ROUTES-------------------------------------------------------
 //API ROUTES-------------------------------------------------------
 //API ROUTES-------------------------------------------------------

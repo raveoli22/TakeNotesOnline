@@ -2,7 +2,7 @@ var app = angular.module('noteTake',[]);
 
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false;  //default delete button not showing
-    $scope.index = "" //index of current note selected by user
+    $scope.index = -1; //index of current note selected by user
     $scope.noteExists = false; //boolean for whether or not a note exists
     
     $scope.open = function(i,index){
@@ -41,22 +41,43 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     //when submitting the add form, send the text to node API
     //use http put or patch
     $scope.createNote = function(){
+        
         if ($scope.noteExists){
             //todo: http put to specific id and body
             console.log('note exists');
+            $( "#dialog" ).dialog('close');
+            
+            var text = document.getElementById("theTextArea");
+            text.value = window.frames['richTextField'].document.body.innerHTML; //transfers rich text field to text area
+            window.frames['richTextField'].document.body.innerHTML = "";         //clears field after it is saved
+            
+            $scope.formData.text = text.value;
+            $scope.formData.subject = $scope.noteSubject;            
+            console.log($scope.index);
+            
+            $http.put('/api/notes/'+$scope.allNotes[$scope.index]._id,$scope.formData)
+                .success(function(data){
+                $scope.formData = {};
+                $scope.allNotes = data;
+                console.log(data);
+                })
+                .error(function(data){
+                    console.log("Error: " + data);
+                });
             $scope.noteExists = false; 
+            $scope.editMode = false;
         }
         else {
             $( "#dialog" ).dialog('close');
             $scope.editMode = false;
+            
             var text = document.getElementById("theTextArea");
-
             text.value = window.frames['richTextField'].document.body.innerHTML; //transfers rich text field to text area
             window.frames['richTextField'].document.body.innerHTML = ""; //clears field after it is saved
             //console.log(text.value);
             $scope.formData.text = text.value;
             $scope.formData.subject = $scope.noteSubject;
-            console.log($scope.noteSubject);
+            //console.log($scope.noteSubject);
             $http.post('/api/notes',$scope.formData)
                 .success(function(data){
                 $scope.formData = {};
