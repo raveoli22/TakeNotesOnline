@@ -94,7 +94,7 @@ app.put('/api/notes/:note_id', function(req,res){ //find user and update
             notes.text    = req.body.text;
         }
         
-        notes.save(function(err,notes){
+        notes.save(function(err,notes){   ///saving the new changes to the DB
             if(err){
                 res.send(err);
             }

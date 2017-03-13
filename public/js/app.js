@@ -17,6 +17,14 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     $scope.backToMenu = function(){
         $scope.editMode = false; 
         $scope.noteExists = false; 
+        $http.get('/api/notes')
+            .success(function(data){
+                $scope.allNotes = data;
+                console.log('LOADING');
+            })
+            .error(function(data){
+                console.log("Error: " + data);
+            });
     };
     
     $scope.selected = 'normal'; //default font size
@@ -29,6 +37,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
     
     $scope.editMode = false; 
     //when landing on the page, get all todos and show
+    //INITIAL LOAD UP
     $http.get('/api/notes')
         .success(function(data){
             $scope.allNotes = data;
@@ -49,6 +58,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
             
             var text = document.getElementById("theTextArea");
             text.value = window.frames['richTextField'].document.body.innerHTML; //transfers rich text field to text area
+            
             window.frames['richTextField'].document.body.innerHTML = "";         //clears field after it is saved
             
             $scope.formData.text = text.value;
@@ -59,13 +69,26 @@ app.controller('mainController',['$scope','$http','$document','$window',function
                 .success(function(data){
                 $scope.formData = {};
                 $scope.allNotes = data;
-                console.log(data);
+                    
+                    $http.get('/api/notes')
+                        .success(function(data){
+                            $scope.allNotes = data;
+                            console.log('SAVING');
+                        })
+                        .error(function(data){
+                            console.log("Error: " + data);
+                        });
                 })
                 .error(function(data){
                     console.log("Error: " + data);
                 });
+
+            
+
+            
             $scope.noteExists = false; 
             $scope.editMode = false;
+            
         }
         else {
             $( "#dialog" ).dialog('close');
@@ -88,6 +111,15 @@ app.controller('mainController',['$scope','$http','$document','$window',function
                     console.log("Error: " + data);
                 });
                 noteExist = false; 
+            
+            $http.get('/api/notes')
+                .success(function(data){
+                    $scope.allNotes = data;
+                    console.log('CREATING');
+                })
+                .error(function(data){
+                    console.log("Error: " + data);
+                });
         }
     };
 
