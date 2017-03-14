@@ -1,6 +1,21 @@
 var app = angular.module('noteTake',[]);
 
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
+    /*
+    //ENLARGING JQUERY SCRIPT =======================================================================//
+    //===============================================================================================//
+    //===============================================================================================//
+    $(document).ready(function(){
+    $('#noteItem').hover(function() {
+        $("#noteItem").addClass('transition');
+    
+        }, function() {
+            $("#noteItem").removeClass('transition');
+            });
+    });
+    //===============================================================================================//
+    //ENLARGING JQUERY SCRIPT =======================================================================//
+    */
     $scope.btnShow = false;  //default delete button not showing
     $scope.index = -1; //index of current note selected by user
     $scope.noteExists = false; //boolean for whether or not a note exists
@@ -233,6 +248,14 @@ app.controller('mainController',['$scope','$http','$document','$window',function
                 break;
             default: 
                 $scope.doFormat('fontName',$scope.selectedFont);
+                break;
+        };
+    };
+    
+    $scope.changeFontColor = function(){
+        switch($scope.selectedColor){
+            case 'red':
+                $scope.doFormat('foreColor',$scope.selectedFont);
                 break;
         };
     };

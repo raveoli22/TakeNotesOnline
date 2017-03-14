@@ -33,10 +33,11 @@
 
 <body ng-controller="mainController">
     
-    <div class="container">
-        <div class="title text-center jumbotron col-lg-12 col-md-12">
+    
+        <div class="head text-center col-lg-12 col-md-12" >
             <a href="https://cooltext.com"><img src="https://images.cooltext.com/4902926.png" width="1582" height="185" alt="Take Notes Online" /></a>
         </div>
+    <div class="container">
         
         <div class="savedNotes" ng-show="!editMode">
             <div class="page-header text-center"  >
@@ -47,7 +48,7 @@
             <div ng-repeat="note in allNotes track by $index" class="allNotes">
                 <br>
                 <ul>
-                    <div class="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" ng-click="open(note,$index)">
+                    <div class="noteItem" id="noteItem" ng-mouseleave="btnShow = false" ng-mouseenter="btnShow = true" ng-click="open(note,$index)">
                         <li>
                             {{note.subject|removeHTML}}<a href="#" ng-show="btnShow" ng-click="deleteNote(note._id); $event.stopPropagation();" ><i>DELETE</i></a>
                         </li>
@@ -58,6 +59,7 @@
                 <button class="btn btn-primary" ng-click="editMode = true;">CREATE</button>
             </div>
         </div>
+        
         <div class="editor-wrap" ng-show="editMode">
             <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group" role="textfont">
@@ -84,59 +86,71 @@
                         <option  value="Lucida Console">Lucida Console</option>
                         <option  value="Courier New">Courier New</option>
                     </select>
+                    <select name="FontColor" id="FontColor" ng-model="selectedColor" ng-mouseleave="changeFontColor()" unselectable="on">
+                        <option  value="Times New Roman">Times New Roman</option>
+                        <option  value="Palatino Linotype">Palatino Linotype</option>
+                        <option  value="Georgia">Georgia</option>
+                        <option  value="Arial">Arial</option>
+                        <option  value="Arial Black">Arial Black</option>
+                        <option  value="Comic Sans MS">Comic Sans MS</option>
+                        <option  value="Impact">Impact</option>
+                        <option  value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                        <option  value="Tahoma">Tahoma</option>
+                        <option  value="Verdana">Verdana</option>
+                        <option  value="Helvetica">Helvetica</option>
+                        <option  value="Lucida Console">Lucida Console</option>
+                        <option  value="Courier New">Courier New</option>
+                    </select>
+                    <br/> 
+                    <div class="bottomRow">
+                        <button type="button" class="btn btn-default" ng-click="doFormat('bold',null)">
+                             <i class="fa fa-bold" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('italic',null)">
+                            <i class="fa fa-italic" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('underline',null)">
+                            <i class="fa fa-underline" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('insertUnorderedList',null)">
+                            <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('insertOrderedList',null)">
+                            <i class="fa fa-list-ol" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('redo',null)">
+                            <i class="fa fa-repeat" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('undo',null)">
+                            <i class="fa fa-undo" aria-hidden="true"></i>
+                        </button>
 
-                    <button type="button" class="btn btn-default" ng-click="doFormat('bold',null)">
-                         <i class="fa fa-bold" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('italic',null)">
-                        <i class="fa fa-italic" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('underline',null)">
-                        <i class="fa fa-underline" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('insertUnorderedList',null)">
-                        <i class="fa fa-list-ul" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('insertOrderedList',null)">
-                        <i class="fa fa-list-ol" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('redo',null)">
-                        <i class="fa fa-repeat" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('undo',null)">
-                        <i class="fa fa-undo" aria-hidden="true"></i>
-                    </button>
-
-                    <button type="button" class="btn btn-default" ng-click="doFormat('justifyLeft',null)">
-                        <i class="fa fa-align-left" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('justifyCenter',null)">
-                        <i class="fa fa-align-center" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('justifyRight',null)">
-                        <i class="fa fa-align-right" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('justifyFull',null)">
-                        <i class="fa fa-align-justify" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('indent',null)">
-                        <i class="fa fa-underline" aria-hidden="true"></i>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="doFormat('outdent',null)">
-                        <i class="fa fa-underline" aria-hidden="true"></i>
-                    </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('justifyLeft',null)">
+                            <i class="fa fa-align-left" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('justifyCenter',null)">
+                            <i class="fa fa-align-center" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('justifyRight',null)">
+                            <i class="fa fa-align-right" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('justifyFull',null)">
+                            <i class="fa fa-align-justify" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('indent',null)">
+                            <i class="fa fa-indent" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="doFormat('outdent',null)">
+                            <i class="fa fa-outdent" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="insertImage()">
+                            <span class="glyphicon glyphicon-picture"></span>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="insertLink()">
+                            <span class="glyphicon glyphicon-link"></span>
+                        </button>
+                    </div>
                 </div>
-
-                <div class="btn-group" role="embed" id="embed">
-                    <button type="button" class="btn btn-default" ng-click="insertImage()">
-                        <span class="glyphicon glyphicon-picture"></span>
-                    </button>
-                    <button type="button" class="btn btn-default" ng-click="insertLink()">
-                        <span class="glyphicon glyphicon-link"></span>
-                    </button>
-                </div>    
-
-
             </div>
 
             <div id="noteEditor">
@@ -149,7 +163,7 @@
                 <!-- iframe replacement of textarea-->
             </div>
             
-            <div class="createBtn"> 
+            <div class="saveBtn"> 
                 <button class="btn btn-primary" ng-click="popUp()">SAVE</button>
             </div>
             <div class="backBtn"> 

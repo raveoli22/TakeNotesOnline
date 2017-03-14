@@ -3,40 +3,34 @@
 }
 
 body {
-    background-image: url(../img/background2.jpg);
-    background-repeat: repeat;
+    background-image: url(../img/background4.jpg);
+    background-color: powderblue;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    margin: 0;
+    padding: 0;
 }
 
-.jumbotron {
-    background-color: lightblue;
-    border-radius: 20px !important;
-    margin-top: -10px;
+.head {
+    display: block;
+    width: 100%;
 }
 
 .editor-wrap {
     margin-top: 30px;
-    background-color: aliceblue;
-    padding: 15px;
-    border-radius: 30px;
-}
-
-#Header {
-    padding-bottom: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    display: inline-block;
+    width: 100%;
 }
 
 .savedNotes {
-    margin-top: -5px;
-    background-color: azure;
+    margin-top: 30px;
     padding: 20px;
+    border-radius: 20px;
     display: inline-block;
     height: 500px;
     width: 100%;
-    border-radius: 20px;
-}
-
-hr {
-    background-color: black !important;
-    height: 1px;
 }
 
 .allNotes li {
@@ -48,16 +42,15 @@ hr {
 .noteItem {
     border: 1px grey solid; 
     padding: 20px;
-    background-color: azure;
     margin: -15px;
+	-webkit-transition: all .5s ease-in-out;
+	-moz-transition: all .5s ease-in-out;
+	-o-transition: all .5s ease-in-out;
+	-ms-transition: all .5s ease-in-out;
 }
 
-.noteItem:hover{
-    background-color: lightcyan;
-    cursor: pointer;
-}
-.createBtn button {
-    margin-left: 800px;
+.noteItem:hover {
+    transform: scale(1.05);
 }
 
 .allNotes a {
@@ -67,37 +60,44 @@ hr {
 }
 
 .btn-toolbar button {
-    width: 60px;
-    height: 40px;
+    width: 45px;
+    height: 25px;
+}
+
+.btn-toolbar button:active{
+    background-color: dimgrey!important;
 }
 
 .btn-toolbar select {
     width: 130px;
-    height: 40px;
-}
-
-#embed {
-    margin-top: 5px;
+    height: 30px;
 }
 
 #FontSize {
     float: left;
+    clear: both;
 }
 
 #FontType {
     float: left;
 }
 
-.btn-toolbar {
-    background-color: clear;
-    padding: 8px;
+#FontColor {
+    width: 50px;
 }
 
-.title {
-    margin: 5px auto;
+.btn-group {
+    //border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
 }
 
-.createBtn button {
+.bottomRow {
+    float: left;
+    clear: both;
+}
+
+.saveBtn button {
     float: right;
     clear: both;
 }
@@ -106,7 +106,8 @@ hr {
   width: 100%;
   height: 400px;
   background-color: clear;
-  padding: 15px;
+  padding: 10px;
+  padding-top: 1px;
   box-sizing: border-box;
 }
 
@@ -117,7 +118,6 @@ hr {
   background: #ffffff;
   border: 1px solid; 
   border-color: dimgrey; 
-  //border-radius: 40px;
 }
 
 
