@@ -34,14 +34,15 @@
 <body ng-controller="mainController">
     
     <div class="container">
-        <div class="title text-center jumbotron">
-            <h1 id="Header">Take Notes Online</h1>
+        <div class="title text-center jumbotron col-lg-12 col-md-12">
+            <a href="https://cooltext.com"><img src="https://images.cooltext.com/4902926.png" width="1582" height="185" alt="Take Notes Online" /></a>
         </div>
         
         <div class="savedNotes" ng-show="!editMode">
             <div class="page-header text-center"  >
-                <h1>YOUR NOTES</h1>
-                <hr>
+                <h1>
+                    <a href="https://cooltext.com"><img src="https://images.cooltext.com/4902933.png" width="396" height="65" alt="Your notes: " /></a>
+                </h1>
             </div>
             <div ng-repeat="note in allNotes track by $index" class="allNotes">
                 <br>
@@ -53,11 +54,10 @@
                     </div>
                 </ul>
             </div>
-            <div class="create text-center"> 
+            <div class="create text-center" style="margin-top:40px;"> 
                 <button class="btn btn-primary" ng-click="editMode = true;">CREATE</button>
             </div>
         </div>
-        
         <div class="editor-wrap" ng-show="editMode">
             <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group" role="textfont">

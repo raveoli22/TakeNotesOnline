@@ -25,6 +25,7 @@ app.controller('mainController',['$scope','$http','$document','$window',function
             .error(function(data){
                 console.log("Error: " + data);
             });
+        window.frames['richTextField'].document.body.innerHTML = "";         //clears field after we go back
     };
     
     $scope.selected = 'normal'; //default font size

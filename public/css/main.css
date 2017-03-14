@@ -8,8 +8,9 @@ body {
 }
 
 .jumbotron {
-    background-color: rgba(255, 0, 0, 0);; !important;
-    border-radius: 50px !important;
+    background-color: lightblue;
+    border-radius: 20px !important;
+    margin-top: -10px;
 }
 
 .editor-wrap {
@@ -24,11 +25,13 @@ body {
 }
 
 .savedNotes {
+    margin-top: -5px;
+    background-color: azure;
     padding: 20px;
     display: inline-block;
     height: 500px;
     width: 100%;
-    border-radius: 40px;
+    border-radius: 20px;
 }
 
 hr {
@@ -43,8 +46,10 @@ hr {
 }
 
 .noteItem {
-    border: 1px black solid; 
+    border: 1px grey solid; 
     padding: 20px;
+    background-color: azure;
+    margin: -15px;
 }
 
 .noteItem:hover{
