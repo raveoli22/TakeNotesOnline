@@ -1,4 +1,4 @@
-var app = angular.module('noteTake',['ngRoute','appRoutes','loginControl']);
+var app = angular.module('noteTake',['ngRoute','appRoutes','loginControl','ngCookies']);
 
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
     $scope.btnShow = false;  //default delete button not showing

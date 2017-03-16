@@ -15,5 +15,9 @@ angular.module('appRoutes',[])
                 controller: 'loginController'
             });
         $locationProvider.html5Mode(true);
-        
+    
+    }])
+    
+    .run(['$rootScope', '$location', '$cookieStore', '$http',function($rootScope,$location,$cookieStore,$http){
+    
     }]);
