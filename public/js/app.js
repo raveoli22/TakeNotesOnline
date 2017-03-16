@@ -1,21 +1,6 @@
-var app = angular.module('noteTake',[]);
+var app = angular.module('noteTake',['ngRoute','appRoutes','loginControl']);
 
 app.controller('mainController',['$scope','$http','$document','$window',function($scope,$http,$document,$window){
-    /*
-    //ENLARGING JQUERY SCRIPT =======================================================================//
-    //===============================================================================================//
-    //===============================================================================================//
-    $(document).ready(function(){
-    $('#noteItem').hover(function() {
-        $("#noteItem").addClass('transition');
-    
-        }, function() {
-            $("#noteItem").removeClass('transition');
-            });
-    });
-    //===============================================================================================//
-    //ENLARGING JQUERY SCRIPT =======================================================================//
-    */
     $scope.btnShow = false;  //default delete button not showing
     $scope.index = -1; //index of current note selected by user
     $scope.noteExists = false; //boolean for whether or not a note exists
@@ -25,8 +10,6 @@ app.controller('mainController',['$scope','$http','$document','$window',function
         window.frames['richTextField'].document.body.innerHTML = i.text;
         $scope.index = index; 
         $scope.noteExists = true; 
-        //console.log(index);
-        //console.log($scope.allNotes.length);
     };
     
     $scope.backToMenu = function(){
